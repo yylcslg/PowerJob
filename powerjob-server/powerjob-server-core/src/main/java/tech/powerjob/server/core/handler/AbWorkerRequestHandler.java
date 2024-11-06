@@ -1,5 +1,6 @@
 package tech.powerjob.server.core.handler;
 
+import com.alibaba.fastjson.JSON;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -61,6 +62,8 @@ public abstract class AbWorkerRequestHandler implements IWorkerRequestHandler {
     @Override
     @Handler(path = S4W_HANDLER_WORKER_HEARTBEAT, processType = ProcessType.NO_BLOCKING)
     public void processWorkerHeartbeat(WorkerHeartbeat heartbeat) {
+        String s = JSON.toJSONString(heartbeat);
+
         long startMs = System.currentTimeMillis();
         WorkerHeartbeatEvent event = new WorkerHeartbeatEvent()
                 .setAppName(heartbeat.getAppName())
@@ -78,6 +81,8 @@ public abstract class AbWorkerRequestHandler implements IWorkerRequestHandler {
     @Override
     @Handler(path = S4W_HANDLER_REPORT_INSTANCE_STATUS, processType = ProcessType.BLOCKING)
     public AskResponse processTaskTrackerReportInstanceStatus(TaskTrackerReportInstanceStatusReq req) {
+        String s = JSON.toJSONString(req);
+        log.info("xxxxxxxxprocessTaskTrackerReportInstanceStatus:" + s);
         long startMs = System.currentTimeMillis();
         TtReportInstanceStatusEvent event = new TtReportInstanceStatusEvent()
                 .setAppId(req.getAppId())
@@ -102,7 +107,8 @@ public abstract class AbWorkerRequestHandler implements IWorkerRequestHandler {
     @Override
     @Handler(path = S4W_HANDLER_REPORT_LOG, processType = ProcessType.NO_BLOCKING)
     public void processWorkerLogReport(WorkerLogReportReq req) {
-
+        String s = JSON.toJSONString(req);
+        log.info("￥￥￥￥processWorkerLogReport:" + s);
         WorkerLogReportEvent event = new WorkerLogReportEvent()
                 .setWorkerAddress(req.getWorkerAddress())
                 .setLogNum(req.getInstanceLogContents().size());

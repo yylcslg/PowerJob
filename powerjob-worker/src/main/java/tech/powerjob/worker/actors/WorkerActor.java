@@ -41,6 +41,7 @@ public class WorkerActor {
 
     @Handler(path = WTT_HANDLER_RUN_JOB)
     public void onReceiveServerScheduleJobReq(ServerScheduleJobReq req) {
+        log.info("####ServerScheduleJobReq:" + req);
         taskTrackerActor.onReceiveServerScheduleJobReq(req);
     }
     @Handler(path = WTT_HANDLER_STOP_INSTANCE)
@@ -49,6 +50,7 @@ public class WorkerActor {
     }
     @Handler(path = WTT_HANDLER_QUERY_INSTANCE_STATUS)
     public AskResponse onReceiveServerQueryInstanceStatusReq(ServerQueryInstanceStatusReq req) {
+        log.info("####onReceiveServerQueryInstanceStatusReq:" + req);
         return taskTrackerActor.onReceiveServerQueryInstanceStatusReq(req);
     }
 }

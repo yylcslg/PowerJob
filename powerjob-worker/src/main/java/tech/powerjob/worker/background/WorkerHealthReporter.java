@@ -80,7 +80,7 @@ public class WorkerHealthReporter extends SafeRunnable {
                 workerRuntime.getWorkerConfig().getMaxHeavyweightTaskNum(),
                 heartbeat.getHeavyTaskTrackerNum()
         );
-
+        log.info("workerRuntime.getTransporter():" +workerRuntime.getTransporter());
         TransportUtils.reportWorkerHeartbeat(heartbeat, currentServer, workerRuntime.getTransporter());
     }
 }

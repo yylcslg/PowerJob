@@ -84,6 +84,7 @@ public class PowerJobServerDiscoveryService implements ServerDiscoveryService {
         for (String server : config.getServerAddress()) {
             String realUrl = String.format(ASSERT_URL, server, appName);
             try {
+                log.info("sss realUrl:" + realUrl);
                 String resultDTOStr = CommonUtils.executeWithRetry0(() -> HttpUtils.get(realUrl));
                 ObjectResultDTO resultDTO = JsonUtils.parseObject(resultDTOStr, ObjectResultDTO.class);
                 if (resultDTO.isSuccess()) {
@@ -207,6 +208,7 @@ public class PowerJobServerDiscoveryService implements ServerDiscoveryService {
         String result = null;
         String url = buildServerDiscoveryUrl(httpServerAddress);
         try {
+            log.info("ssddsd:"+url);
             result = CommonUtils.executeWithRetry0(() -> HttpUtils.get(url));
         }catch (Exception ignore) {
         }
@@ -228,8 +230,10 @@ public class PowerJobServerDiscoveryService implements ServerDiscoveryService {
                 .setAppId(appInfo.getAppId())
                 .setCurrentServer(currentServerAddress)
                 .setProtocol(config.getProtocol().name().toUpperCase());
-
+        log.info("aass currentServerAddress:" + currentServerAddress);
         String query = Joiner.on(OmsConstant.AND).withKeyValueSeparator(OmsConstant.EQUAL).join(serverDiscoveryRequest.toMap());
+
+        log.info("aass query:" + query);
         return String.format(DISCOVERY_URL, address, query);
     }
 }

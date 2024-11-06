@@ -61,6 +61,7 @@ public class TransportUtils {
 
     public static void reportWorkerHeartbeat(WorkerHeartbeat req, String address, Transporter transporter) {
         final URL url = easyBuildUrl(ServerType.SERVER, S4W_PATH, S4W_HANDLER_WORKER_HEARTBEAT, address);
+        log.info("####url:" + url);
         transporter.tell(url, req);
     }
 

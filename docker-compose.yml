@@ -2,7 +2,6 @@
 # 1. PowerJob 根目录执行：docker-compose up
 # 2. 静静等待服务启动。
 
-version: '3'
 services:
   powerjob-mysql:
     environment:

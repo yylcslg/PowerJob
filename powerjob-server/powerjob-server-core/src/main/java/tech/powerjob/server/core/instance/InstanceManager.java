@@ -98,6 +98,7 @@ public class InstanceManager implements TransportServiceAware {
             return;
         }
         // 丢弃非目标 TaskTracker 的上报数据（脑裂情况）
+
         if (!req.getSourceAddress().equals(instanceInfo.getTaskTrackerAddress())) {
             log.warn("[InstanceManager-{}] receive the other TaskTracker's report: {}, but current TaskTracker is {}, this report will be dropped.", instanceId, req, instanceInfo.getTaskTrackerAddress());
             return;

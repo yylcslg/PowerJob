@@ -174,6 +174,7 @@ public class DispatchService {
         String taskTrackerAddress = taskTracker.getAddress();
 
         URL workerUrl = ServerURLFactory.dispatchJob2Worker(taskTrackerAddress);
+        log.error("%%%%workerUrl:" +workerUrl);
         transportService.tell(taskTracker.getProtocol(), workerUrl, req);
         log.info("[Dispatcher-{}|{}] send schedule request to TaskTracker[protocol:{},address:{}] successfully: {}.", jobId, instanceId, taskTracker.getProtocol(), taskTrackerAddress, req);
 

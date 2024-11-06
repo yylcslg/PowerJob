@@ -132,6 +132,7 @@ public class PowerTransportService implements TransportService, InitializingBean
         this.engines.add(re);
 
         protocolInfo.setTransporter(engineOutput.getTransporter());
+        log.info("***"+protocol +"    "+protocolInfo);
         this.protocolName2Info.put(protocol, protocolInfo);
     }
 
